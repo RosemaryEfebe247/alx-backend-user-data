@@ -57,7 +57,9 @@ class BasicAuth(Auth):
             user_pwd: str) -> TypeVar('User'):
         """ A method that returns the user instance
         """
-        if user_email is None or user_pwd is None:
+        if user_email is None:
+            return None
+        if user_pwd is None:
             return None
         if not isinstance(user_email, str) or not isinstance(user_pwd, str):
             return None
