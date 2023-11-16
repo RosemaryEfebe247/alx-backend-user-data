@@ -49,7 +49,7 @@ class DB:
                 raise NoResultFound()
             return found_user
         except InvalidRequestError as e:
-            raise
+            raise RuntimeError
 
     def update_user(self, user_id: int, **kwargs: Dict) -> None:
         """ A method that updates a user
