@@ -48,8 +48,6 @@ class DB:
             if found_user is None:
                 raise NoResultFound()
             return found_user
-        except NoResultFound:
-            return None
         except InvalidRequestError as e:
             raise
 
