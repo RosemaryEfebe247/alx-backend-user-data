@@ -24,9 +24,10 @@ def users() -> str:
     Return:
         - The user payload
     """
-    email = request.form.get("email")
-    password = request.form.get("password")
     try:
+        email = request.form.get("email")
+        password = request.form.get("password")
+
         register = AUTH.register_user(email, password)
         return jsonify({"email": email, "message": "user created"})
     except Exception:
