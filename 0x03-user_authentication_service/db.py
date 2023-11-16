@@ -48,7 +48,7 @@ class DB:
         found_user = self._session.query(User).filter_by(**kwargs).first()
         if not found_user:
             raise NoResultFound
-        return user
+        return found_user
 
     def update_user(self, user_id: int, **kwargs: Dict) -> None:
         """ A method that updates a user
