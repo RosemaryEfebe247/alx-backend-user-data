@@ -5,13 +5,13 @@ from flask import Flask, jsonify, request
 
 from auth import Auth
 
-AUTH = Auth()
 
 app = Flask(__name__)
+AUTH = Auth()
 
 
 @app.route("/", methods=["GET"], strict_slashes=False)
-def welcome() -> str:
+def index() -> str:
     """ Return a payload
     """
     message = {"message": "Bienvenue"}
