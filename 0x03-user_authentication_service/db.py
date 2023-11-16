@@ -43,13 +43,12 @@ class DB:
     def find_user_by(self, **kwargs: Dict) -> User:
         """ Find users using the keyword args
         """
-        try:
-            found_user = self._session.query(User).filter_by(**kwargs).first()
-            if found_user is None:
-                raise NoResultFound()
-            return found_user
-        except InvalidRequestError as e:
-            raise RuntimeError
+        if not kwargs:
+            raise InvalidRequestError
+        found_user = self._session.query(User).filter_by(**kwargs).first()
+        if not found_user:
+            raise NoResultFound
+        return user
 
     def update_user(self, user_id: int, **kwargs: Dict) -> None:
         """ A method that updates a user
