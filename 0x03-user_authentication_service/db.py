@@ -33,7 +33,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email: str, hashed_password: str) -> str:
+    def add_user(self, email: str, hashed_password: str) -> User:
         """ Session that adds user
         """
         new_user = User(email=email, hashed_password=hashed_password)
@@ -41,7 +41,7 @@ class DB:
         self._session.commit()
         return new_user
 
-    def find_user_by(self, **kwargs: Dict) -> str:
+    def find_user_by(self, **kwargs: Dict) -> User:
         """ Find users using the keyword args
         """
         if not kwargs:
