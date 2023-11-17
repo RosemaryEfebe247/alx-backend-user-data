@@ -48,10 +48,11 @@ class DB:
     def find_user_by(self, **kwargs: Dict) -> User:
         """ Find users using the keyword args
         """
-        if not set(kwargs.keys()).issubset(User.__dict__.keys()):
-            raise InvalidRequestError
+        for key in kwargs.keys():
+            if not hasattr(User, key):
+                raise InvalidRequestError
         user = self._session.query(User).filter_by(**kwargs).first()
-        if not user:
+        if user is None:
             raise NoResultFound
         return user
 
