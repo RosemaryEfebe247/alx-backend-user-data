@@ -48,12 +48,12 @@ class DB:
     def find_user_by(self, **kwargs: Dict) -> User:
         """ Find users using the keyword args
         """
-        if not kwargs:
+        if not set(kwargs.keys()).issubset(User.__dict__.keys()):
             raise InvalidRequestError
-        found_user = self._session.query(User).filter_by(**kwargs).first()
-        if not found_user:
+        user = self._session.query(User).filter_by(**kwargs).first()
+        if not user:
             raise NoResultFound
-        return found_user
+        return user
 
     def update_user(self, user_id: int, **kwargs: Dict) -> None:
         """ A method that updates a user
